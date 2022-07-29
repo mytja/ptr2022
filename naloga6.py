@@ -36,7 +36,7 @@ def recursive(porabljeni_cekini: List[int], denarja_porabljenega: int):
 
     if denarja_porabljenega == M and (lowestAmountNeeded is None or len(porabljeni_cekini) < lowestAmountNeeded):
         lowestAmountNeeded = len(porabljeni_cekini)
-        print(porabljeni_cekini, len(porabljeni_cekini), denarja_porabljenega)
+        #print(porabljeni_cekini, len(porabljeni_cekini), denarja_porabljenega)
         return True
 
     for cekin in cekini:
