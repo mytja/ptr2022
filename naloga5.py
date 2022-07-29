@@ -85,13 +85,7 @@ def recursive(trenutna_pot: List[Route], zadnja_postaja: int, cena: int, ustatio
         
         used_stations = copy.deepcopy(ustations)
 
-        n = 0
-        if pot.station1 in used_stations:
-            n += 1
-        if pot.station2 in used_stations:
-            n += 1
-        
-        if n == 2:
+        if pot.station2 in used_stations and pot.station1 in used_stations:
             # To pomeni, da se vračamo na eno "že znano" postajo, kar je v resnici samo zapravljanje denarja.
             continue
             
@@ -119,7 +113,6 @@ def fmt_output():
     for i in postaje:
         print(i, end=" ")
     print()
+    print(f"Cena: {najmanjsa_cena}")
 
 fmt_output()
-
-print(f"Cena: {najmanjsa_cena}")
