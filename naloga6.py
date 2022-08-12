@@ -2,11 +2,6 @@ import copy
 import sys
 from typing import List
 
-# Algoritem bo iskal od največjega cekina proti najmanjšemu in vrne prvo rešitev, saj je ta rešitev navadno (če ne kar vedno) najboljša.
-# To zahteva izjemno malo časa, primerljivo z neoptimiziranim algoritmom, ki poišče čisto vse možne kombinacije.
-# Odločitev prepuščam uporabniku, je pa (izjemno) priporočljivo uporabljati optimizacije.
-OPTIMIZE = True
-
 def parse(i):
     s = i.split(" ")
     return int(s[0]), int(s[1])
@@ -31,6 +26,9 @@ cekini.sort(reverse=True)
 def recursive(porabljeni_cekini: List[int], denarja_porabljenega: int):
     global lowestAmountNeeded
 
+    if lowestAmountNeeded is not None and len(porabljeni_cekini) >= lowestAmountNeeded:
+        return False
+
     if denarja_porabljenega > M:
         return False
 
@@ -44,8 +42,7 @@ def recursive(porabljeni_cekini: List[int], denarja_porabljenega: int):
         nov_porabljen_denar = denarja_porabljenega + cekin
         porabljeni_cekini_local.append(cekin)
 
-        if recursive(porabljeni_cekini_local, nov_porabljen_denar) and OPTIMIZE:
-            return True
+        recursive(porabljeni_cekini_local, nov_porabljen_denar)
 
 recursive([], 0)
 
